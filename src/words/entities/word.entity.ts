@@ -1,1 +1,4 @@
-export class Word {}
+export class Word {
+  id: number;
+  text: string;
+}

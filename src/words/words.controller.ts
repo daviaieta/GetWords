@@ -8,16 +8,15 @@ import {
   Delete,
 } from '@nestjs/common';
 import { WordsService } from './words.service';
-import { CreateWordDto } from './dto/create-word.dto';
-import { UpdateWordDto } from './dto/update-word.dto';
+import { Word } from './entities/word.entity';
 
 @Controller('words')
 export class WordsController {
   constructor(private readonly wordsService: WordsService) {}
 
-  @Post()
-  create(@Body() createWordDto: CreateWordDto) {
-    return this.wordsService.create(createWordDto);
+  @Post('create')
+  create(@Body() word: Word) {
+    return this.wordsService.create(word);
   }
 
   @Get()
@@ -31,12 +30,17 @@ export class WordsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateWordDto: UpdateWordDto) {
-    return this.wordsService.update(+id, updateWordDto);
+  update(@Param('id') id: string, @Body() word: Word) {
+    return this.wordsService.update(+id, word);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.wordsService.remove(+id);
+  }
+
+  @Get('random')
+  randomWord() {
+    return this.wordsService.getRandomWord();
   }
 }
