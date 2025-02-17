@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function Home() {
+export default function GetWord() {
   const [word, setWord] = useState("");
 
   useEffect(() => {
@@ -16,10 +16,8 @@ export default function Home() {
   }, []);
 
   return (
-    <View>
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
-        <Text style={{ fontSize: 18 }}>Word of the Day: {word}</Text>
-      </View>
+    <View className="flex justify-center items-center h-full w-full">
+      <Text className="text-blue-500 text-3xl">Word of the Day: {word}</Text>
     </View>
   );
 }
