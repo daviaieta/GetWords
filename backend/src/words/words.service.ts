@@ -6,10 +6,9 @@ export class WordsService {
   constructor(private prismaService: PrismaService) {}
 
   async create(word: Word) {
+    console.log(word.definition);
     const createdWord = await this.prismaService.word.create({
-      data: {
-        text: word.text,
-      },
+      data: word,
     });
     return createdWord;
   }
